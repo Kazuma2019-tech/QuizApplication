@@ -122,11 +122,8 @@ public class QuizJFrame extends javax.swing.JFrame
     {
 	if (questionIndex < questionBank.length)
 	{
-
 	    questionJTextField.setText(questionBank[questionIndex]);
-
 	    selectAnswerComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(questionBankAnswers[questionIndex]));
-
 	    if (questionIndex == 4)
 	    {
 		String output = "<html>Thanks for Taking the quiz.<br />"
