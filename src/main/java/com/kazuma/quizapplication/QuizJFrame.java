@@ -1,35 +1,74 @@
 package com.kazuma.quizapplication;
 
-
 import javax.swing.JOptionPane;
 
-public class QuizJFrame extends javax.swing.JFrame {
+public class QuizJFrame extends javax.swing.JFrame
+{
 
-    public QuizJFrame() {
-        initComponents();
-        userGraphicJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Thumbs-up.jpg")));
+    public QuizJFrame()
+    {
+	initComponents();
+	userGraphicJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Thumbs-up.jpg")));
     }
 
     private int questionIndex = 0;
-    private final String questionBank[] = {
-        "What is the Capital Of Australia?",
-        "Who scored the final goal of the Euro 2012 Championships",
-        "Which of these are not a county in Ireland",
-        "Who won the Premier League in 2019/2020",
-        "What is the Capital of Nigeria",
-        "Which of these is not a city in USA",
-        "Which is the hottest planet", "Where is the Eiffel Tower Located in",
-        "Who is the Prime Minister Of Ireland",
-        "Who is the President of the United States"
+    private final String[] questionBank =
+    {
+	"What is the Capital Of Australia?",
+	"Who scored the final goal of the Euro 2012 Championships",
+	"Which of these are not a county in Ireland",
+	"Who won the Premier League in 2019/2020",
+	"What is the Capital of Nigeria",
+	"Which of these is not a city in USA",
+	"Which is the hottest planet", "Where is the Eiffel Tower Located in",
+	"Who is the Prime Minister Of Ireland",
+	"Who is the President of the United States"
     };
-    private final String questionBankAnswers[][] = {
-        {"Perth", "Canberra", "Adelaide", "Sydney"},
-        {"David Silva", "Juan Mata", "Cristiano Ronaldo", "Antonio Di Natalie"},
-        {"Limerick", "Dublin", "Manchester", "Cork"}, {"Manchester City", "Manchester United", "Liverpool", "Chelsea"},
-        {"Lagos", "Port-Harcourt", "Abuja", "Calabar"}, {"Warri", "New York", "Chicago", "Los Angeles"},
-        {"Venus", "Mercury", "Saturn", "Earth"}, {"Madrid", "London", "Orlando", "Paris"},
-        {"Michael Martin", "Mohammed Buhari", "Prince Charles", "Boris Johnson"},
-        {"Barack Obama", "The Rock", "Donald Trump", "Hillary CLinton"}
+    private final String[][] questionBankAnswers =
+    {
+	{
+	    "Perth", "Canberra", "Adelaide", "Sydney"
+	},
+	{
+	    "David Silva", "Juan Mata", "Cristiano Ronaldo", "Antonio Di Natalie"
+	},
+	{
+	    "Limerick", "Dublin", "Manchester", "Cork"
+	},
+	{
+	    "Manchester City", "Manchester United", "Liverpool", "Chelsea"
+	},
+	{
+	    "Lagos", "Port-Harcourt", "Abuja", "Calabar"
+	},
+	{
+	    "Warri", "New York", "Chicago", "Los Angeles"
+	},
+	{
+	    "Venus", "Mercury", "Saturn", "Earth"
+	},
+	{
+	    "Madrid", "London", "Orlando", "Paris"
+	},
+	{
+	    "Michael Martin", "Mohammed Buhari", "Prince Charles", "Boris Johnson"
+	},
+	{
+	    "Barack Obama", "The Rock", "Donald Trump", "Hillary CLinton"
+	}
+    };
+    private final String[] questionBankCorrectAnswers =
+    {
+	"Canberra",
+	"Juan Mata",
+	"Manchester",
+	"Liverpool",
+	"Abuja",
+	"Warri",
+	"Venus",
+	"Paris",
+	"Michael Martin",
+	"Donald Trump"
     };
     private int correctAnswers = 0;
     private int wrongAnswers = 0;
@@ -37,66 +76,78 @@ public class QuizJFrame extends javax.swing.JFrame {
     //
     //  Event Handler Methods
     //
-    private void startQuiz() {
-        nextQuestionButton.setEnabled(true);
-        checkAnswerButton.setEnabled(true);
-        startButton.setEnabled(false);
-        loadNextQuestion();
+    private void startQuiz()
+    {
+	nextQuestionButton.setEnabled(true);
+	checkAnswerButton.setEnabled(true);
+	startButton.setEnabled(false);
+	loadNextQuestion();
     }
 
-    private void quitQuizProgram() {
-        int response = JOptionPane.showConfirmDialog(this, "Do you wish to quit? ", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    private void quitQuizProgram()
+    {
+	int response = JOptionPane.showConfirmDialog(this, "Do you wish to quit? ", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        if (response == JOptionPane.YES_OPTION) {
-            System.exit(0);
-        }
+	if (response == JOptionPane.YES_OPTION)
+	{
+	    System.exit(0);
+	}
     }
 
-    private void checkAnswer() {
-        boolean answerIsCorrect = (selectAnswerComboBox.getSelectedItem() == "Canberra"
-                || selectAnswerComboBox.getSelectedItem() == "Juan Mata"
-                || selectAnswerComboBox.getSelectedItem() == "Manchester"
-                || selectAnswerComboBox.getSelectedItem() == "Liverpool"
-                || selectAnswerComboBox.getSelectedItem() == "Abuja"
-                || selectAnswerComboBox.getSelectedItem() == "Warri"
-                || selectAnswerComboBox.getSelectedItem() == "Venus"
-                || selectAnswerComboBox.getSelectedItem() == "Paris"
-                || selectAnswerComboBox.getSelectedItem() == "Michael Martin"
-                || selectAnswerComboBox.getSelectedItem() == "Donald Trump");
+    private void checkAnswer()
+    {
+	boolean answerIsCorrect = false;
+	for (String answer : questionBankCorrectAnswers)
+	{
+	    answerIsCorrect = selectAnswerComboBox.getSelectedItem() == answer;
+	    if (answerIsCorrect)
+	    {
+		break;
+	    }
+	}
 
-        if (answerIsCorrect) {
-            correctAnswers++;
-            answerChoiceTextField.setText("Correct Answer !!");
-        } else {
-            wrongAnswers++;
-            answerChoiceTextField.setText("Wrong Answer !!");
-        }
+	if (answerIsCorrect)
+	{
+	    correctAnswers++;
+	    answerChoiceTextField.setText("Correct Answer !!");
+	}
+	else
+	{
+	    wrongAnswers++;
+	    answerChoiceTextField.setText("Wrong Answer !!");
+	}
     }
 
-    private void loadNextQuestion() {
-        if (questionIndex < questionBank.length) {
+    private void loadNextQuestion()
+    {
+	if (questionIndex < questionBank.length)
+	{
 
-            questionJTextField.setText(questionBank[questionIndex]);
+	    questionJTextField.setText(questionBank[questionIndex]);
 
-            selectAnswerComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(questionBankAnswers[questionIndex]));
+	    selectAnswerComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(questionBankAnswers[questionIndex]));
 
-            if (questionIndex == 4) {
-                String output = "<html>Thanks for Taking the quiz.<br />"
-                        + "Number of questions answered = " + (questionIndex + 1) + "<br/>"
-                        + "Number of Correct answers = " + correctAnswers + "</br>"
-                        + "Number of Incorrect answers = " + wrongAnswers + "</html>";
-                JOptionPane.showMessageDialog(this, output);
-            }
-        }
-        questionIndex++;
+	    if (questionIndex == 4)
+	    {
+		String output = "<html>Thanks for Taking the quiz.<br />"
+			+ "Number of questions answered = " + (questionIndex + 1) + "<br/>"
+			+ "Number of Correct answers = " + correctAnswers + "</br>"
+			+ "Number of Incorrect answers = " + wrongAnswers + "</html>";
+		JOptionPane.showMessageDialog(this, output);
+	    }
+	}
+	questionIndex++;
     }
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new QuizJFrame().setVisible(true);
-            }
-        });
+    public static void main(String args[])
+    {
+	java.awt.EventQueue.invokeLater(new Runnable()
+	{
+	    public void run()
+	    {
+		new QuizJFrame().setVisible(true);
+	    }
+	});
     }
 
     /**
@@ -257,23 +308,21 @@ public class QuizJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        startQuiz();
+	startQuiz();
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
-        quitQuizProgram();
+	quitQuizProgram();
     }//GEN-LAST:event_quitButtonActionPerformed
 
     private void checkAnswerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAnswerButtonActionPerformed
-        checkAnswer();
+	checkAnswer();
     }//GEN-LAST:event_checkAnswerButtonActionPerformed
 
     private void nextQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextQuestionButtonActionPerformed
-        loadNextQuestion();
+	loadNextQuestion();
     }//GEN-LAST:event_nextQuestionButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ScorejLabel;
