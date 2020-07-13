@@ -1,5 +1,7 @@
 package com.kazuma.quizapplication;
 
+import java.awt.HeadlessException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 public class QuizJFrame extends javax.swing.JFrame
@@ -9,6 +11,7 @@ public class QuizJFrame extends javax.swing.JFrame
     {
 	initComponents();
 	initQuestionOrder();
+	initQuiz();
 	//userGraphicJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Thumbs-up.jpg")));
     }
     private int questionIndex = 0;
@@ -88,8 +91,6 @@ public class QuizJFrame extends javax.swing.JFrame
     //
     private void startQuiz()
     {
-	nextQuestionButton.setEnabled(true);
-	checkAnswerButton.setEnabled(true);
 	startButton.setEnabled(false);
 	randomizeQuestionOrder();
 	loadNextQuestion();
@@ -132,10 +133,14 @@ public class QuizJFrame extends javax.swing.JFrame
 	    wrongAnswers++;
 	    answerChoiceTextField.setText("Wrong Answer !!");
 	}
+	nextQuestionButton.setEnabled(true);
+	checkAnswerButton.setEnabled(false);
     }
 
     private void loadNextQuestion()
     {
+	checkAnswerButton.setEnabled(true);
+	answerChoiceTextField.setText("");
 	if (questionIndex < questionBank.length)
 	{
 	    int questionNumber = questionOrder[questionIndex];
@@ -148,16 +153,28 @@ public class QuizJFrame extends javax.swing.JFrame
 			+ "Number of Correct answers = " + correctAnswers + "<br />"
 			+ "Number of Incorrect answers = " + wrongAnswers + "</html>";
 		JOptionPane.showMessageDialog(this, output);
+		initQuiz();
 	    }
 	    questionIndex++;
+	    nextQuestionButton.setEnabled(false);
 	}
 	else
 	{
 	    JOptionPane.showMessageDialog(this, "All questions answered.");
-	    randomizeQuestionOrder();
-	    questionIndex = 0;
-
+	    initQuiz();
 	}
+    }
+
+    private void initQuiz() throws HeadlessException
+    {
+	correctAnswers = 0;
+	wrongAnswers = 0;
+	questionIndex = 0;
+	questionJTextField.setText("");
+	selectAnswerComboBox.setModel(new DefaultComboBoxModel());
+	startButton.setEnabled(true);
+	nextQuestionButton.setEnabled(false);
+	checkAnswerButton.setEnabled(false);
     }
 
     public static void main(String args[])
@@ -251,12 +268,13 @@ public class QuizJFrame extends javax.swing.JFrame
             controlsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlsJPanelLayout.createSequentialGroup()
                 .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nextQuestionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(checkAnswerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(nextQuestionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         controlsJPanelLayout.setVerticalGroup(
             controlsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,7 +304,7 @@ public class QuizJFrame extends javax.swing.JFrame
                 .addGroup(questionJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(selectAnswerJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
                     .addComponent(questionJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(questionJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(questionJTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                     .addComponent(selectAnswerComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -348,12 +366,12 @@ public class QuizJFrame extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(questionJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(controlsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(userGraphicJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(controlsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(questionJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -363,7 +381,7 @@ public class QuizJFrame extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(controlsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userGraphicJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(questionJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
