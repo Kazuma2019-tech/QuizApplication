@@ -2,27 +2,32 @@ package com.kazuma.quizapplication;
 
 import javax.swing.JOptionPane;
 
+/*
+Author Dele
+ */
+//this is the class definition
 public class QuizJFrame extends javax.swing.JFrame
 {
 
     public QuizJFrame()
     {
 	initComponents();
-	userGraphicJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Thumbs-up.jpg")));
+	//userGraphicJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Thumbs-up.jpg")));
     }
 
     private int questionIndex = 0;
     private final String[] questionBank =
     {
 	"What is the Capital Of Australia?",
-	"Who scored the final goal of the Euro 2012 Championships",
-	"Which of these are not a county in Ireland",
-	"Who won the Premier League in 2019/2020",
-	"What is the Capital of Nigeria",
-	"Which of these is not a city in USA",
-	"Which is the hottest planet", "Where is the Eiffel Tower Located in",
-	"Who is the Prime Minister Of Ireland",
-	"Who is the President of the United States"
+	"Who scored the final goal of the Euro 2012 Championships?",
+	"Which of these are not a county in Ireland?",
+	"Who won the Premier League in 2019/2020?",
+	"What is the Capital of Nigeria?",
+	"Which of these is not a city in USA?",
+	"Which is the hottest planet?",
+	"Where is the Eiffel Tower Located in?",
+	"Who is the Prime Minister Of Ireland?",
+	"Who is the President of the United States?"
     };
     private final String[][] questionBankAnswers =
     {
@@ -154,9 +159,9 @@ public class QuizJFrame extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
-        ScorejLabel = new javax.swing.JLabel();
         controlsJPanel = new javax.swing.JPanel();
         startButton = new javax.swing.JButton();
         nextQuestionButton = new javax.swing.JButton();
@@ -169,42 +174,54 @@ public class QuizJFrame extends javax.swing.JFrame
         selectAnswerComboBox = new javax.swing.JComboBox<>();
         answerChoiceTextField = new javax.swing.JTextField();
         userGraphicJLabel = new javax.swing.JLabel();
+        menuBar = new javax.swing.JMenuBar();
+        file = new javax.swing.JMenu();
+        language = new javax.swing.JMenu();
+        english = new javax.swing.JMenuItem();
+        french = new javax.swing.JMenuItem();
+        german = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        ScorejLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        ScorejLabel.setText("Score :");
+        setTitle("General knowledge quiz");
 
         controlsJPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Controls", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP));
 
         startButton.setText("Start");
         startButton.setToolTipText("click on the start button to start");
-        startButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        startButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 startButtonActionPerformed(evt);
             }
         });
 
         nextQuestionButton.setText("Next Question");
         nextQuestionButton.setEnabled(false);
-        nextQuestionButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        nextQuestionButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 nextQuestionButtonActionPerformed(evt);
             }
         });
 
         checkAnswerButton.setText("Check Answer");
         checkAnswerButton.setEnabled(false);
-        checkAnswerButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        checkAnswerButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 checkAnswerButtonActionPerformed(evt);
             }
         });
 
         quitButton.setText("Quit");
         quitButton.setToolTipText("Click to quit and finish");
-        quitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        quitButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 quitButtonActionPerformed(evt);
             }
         });
@@ -250,7 +267,7 @@ public class QuizJFrame extends javax.swing.JFrame
                 .addGroup(questionJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(selectAnswerJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
                     .addComponent(questionJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                 .addGroup(questionJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(questionJTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                     .addComponent(selectAnswerComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -273,6 +290,38 @@ public class QuizJFrame extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        file.setText("File");
+        menuBar.add(file);
+
+        language.setText("language");
+
+        english.setText("english");
+        english.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                englishActionPerformed(evt);
+            }
+        });
+        language.add(english);
+
+        french.setText("french");
+        french.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                frenchActionPerformed(evt);
+            }
+        });
+        language.add(french);
+
+        german.setText("german");
+        language.add(german);
+
+        menuBar.add(language);
+
+        setJMenuBar(menuBar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -281,8 +330,7 @@ public class QuizJFrame extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ScorejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(userGraphicJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(controlsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -294,12 +342,11 @@ public class QuizJFrame extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ScorejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(controlsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userGraphicJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(questionJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -321,11 +368,26 @@ public class QuizJFrame extends javax.swing.JFrame
 	loadNextQuestion();
     }//GEN-LAST:event_nextQuestionButtonActionPerformed
 
+    private void englishActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_englishActionPerformed
+    {//GEN-HEADEREND:event_englishActionPerformed
+	// TODO add your handling code here:
+    }//GEN-LAST:event_englishActionPerformed
+
+    private void frenchActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_frenchActionPerformed
+    {//GEN-HEADEREND:event_frenchActionPerformed
+	// TODO add your handling code here:
+    }//GEN-LAST:event_frenchActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ScorejLabel;
     private javax.swing.JTextField answerChoiceTextField;
     private javax.swing.JButton checkAnswerButton;
     private javax.swing.JPanel controlsJPanel;
+    private javax.swing.JMenuItem english;
+    private javax.swing.JMenu file;
+    private javax.swing.JMenuItem french;
+    private javax.swing.JMenuItem german;
+    private javax.swing.JMenu language;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton nextQuestionButton;
     private javax.swing.JLabel questionJLabel;
     private javax.swing.JPanel questionJPanel;
