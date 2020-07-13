@@ -2,19 +2,15 @@ package com.kazuma.quizapplication;
 
 import javax.swing.JOptionPane;
 
-/*
-Author Dele
- */
-//this is the class definition
 public class QuizJFrame extends javax.swing.JFrame
 {
 
     public QuizJFrame()
     {
 	initComponents();
+	initQuestionOrder();
 	//userGraphicJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Thumbs-up.jpg")));
     }
-
     private int questionIndex = 0;
     private final String[] questionBank =
     {
@@ -29,6 +25,15 @@ public class QuizJFrame extends javax.swing.JFrame
 	"Who is the Prime Minister Of Ireland?",
 	"Who is the President of the United States?"
     };
+    private final int[] questionOrder = new int[questionBank.length];
+
+    private void initQuestionOrder()
+    {
+	for (int index = 0; index < questionOrder.length; index++)
+	{
+	    questionOrder[index] = index;
+	}
+    }
     private final String[][] questionBankAnswers =
     {
 	{
@@ -86,7 +91,13 @@ public class QuizJFrame extends javax.swing.JFrame
 	nextQuestionButton.setEnabled(true);
 	checkAnswerButton.setEnabled(true);
 	startButton.setEnabled(false);
+	randomizeQuestionOrder();
 	loadNextQuestion();
+    }
+
+    private void randomizeQuestionOrder()
+    {
+	Stackoverflow.fisherYatesShuffleArray(questionOrder);
     }
 
     private void quitQuizProgram()
@@ -127,8 +138,9 @@ public class QuizJFrame extends javax.swing.JFrame
     {
 	if (questionIndex < questionBank.length)
 	{
-	    questionJTextField.setText(questionBank[questionIndex]);
-	    selectAnswerComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(questionBankAnswers[questionIndex]));
+	    int questionNumber = questionOrder[questionIndex];
+	    questionJTextField.setText(questionBank[questionNumber]);
+	    selectAnswerComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(questionBankAnswers[questionNumber]));
 	    if (questionIndex == 4)
 	    {
 		String output = "<html>Thanks for Taking the quiz.<br />"
@@ -137,8 +149,15 @@ public class QuizJFrame extends javax.swing.JFrame
 			+ "Number of Incorrect answers = " + wrongAnswers + "</html>";
 		JOptionPane.showMessageDialog(this, output);
 	    }
+	    questionIndex++;
 	}
-	questionIndex++;
+	else
+	{
+	    JOptionPane.showMessageDialog(this, "All questions answered.");
+	    randomizeQuestionOrder();
+	    questionIndex = 0;
+
+	}
     }
 
     public static void main(String args[])
@@ -398,4 +417,5 @@ public class QuizJFrame extends javax.swing.JFrame
     private javax.swing.JButton startButton;
     private javax.swing.JLabel userGraphicJLabel;
     // End of variables declaration//GEN-END:variables
+
 }
