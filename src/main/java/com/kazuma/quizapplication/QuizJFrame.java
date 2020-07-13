@@ -194,11 +194,11 @@ public class QuizJFrame extends javax.swing.JFrame
         answerChoiceTextField = new javax.swing.JTextField();
         userGraphicJLabel = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
-        file = new javax.swing.JMenu();
-        language = new javax.swing.JMenu();
-        english = new javax.swing.JMenuItem();
-        french = new javax.swing.JMenuItem();
-        german = new javax.swing.JMenuItem();
+        fileMenu = new javax.swing.JMenu();
+        languageMenu = new javax.swing.JMenu();
+        englishMenuItem = new javax.swing.JMenuItem();
+        frenchMenuItem = new javax.swing.JMenuItem();
+        germanMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("General knowledge quiz");
@@ -309,35 +309,35 @@ public class QuizJFrame extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        file.setText("File");
-        menuBar.add(file);
+        fileMenu.setText("File");
+        menuBar.add(fileMenu);
 
-        language.setText("language");
+        languageMenu.setText("language");
 
-        english.setText("english");
-        english.addActionListener(new java.awt.event.ActionListener()
+        englishMenuItem.setText("english");
+        englishMenuItem.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                englishActionPerformed(evt);
+                englishMenuItemActionPerformed(evt);
             }
         });
-        language.add(english);
+        languageMenu.add(englishMenuItem);
 
-        french.setText("french");
-        french.addActionListener(new java.awt.event.ActionListener()
+        frenchMenuItem.setText("french");
+        frenchMenuItem.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                frenchActionPerformed(evt);
+                frenchMenuItemActionPerformed(evt);
             }
         });
-        language.add(french);
+        languageMenu.add(frenchMenuItem);
 
-        german.setText("german");
-        language.add(german);
+        germanMenuItem.setText("german");
+        languageMenu.add(germanMenuItem);
 
-        menuBar.add(language);
+        menuBar.add(languageMenu);
 
         setJMenuBar(menuBar);
 
@@ -387,25 +387,25 @@ public class QuizJFrame extends javax.swing.JFrame
 	loadNextQuestion();
     }//GEN-LAST:event_nextQuestionButtonActionPerformed
 
-    private void englishActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_englishActionPerformed
-    {//GEN-HEADEREND:event_englishActionPerformed
+    private void englishMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_englishMenuItemActionPerformed
+    {//GEN-HEADEREND:event_englishMenuItemActionPerformed
 	// TODO add your handling code here:
-    }//GEN-LAST:event_englishActionPerformed
+    }//GEN-LAST:event_englishMenuItemActionPerformed
 
-    private void frenchActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_frenchActionPerformed
-    {//GEN-HEADEREND:event_frenchActionPerformed
+    private void frenchMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_frenchMenuItemActionPerformed
+    {//GEN-HEADEREND:event_frenchMenuItemActionPerformed
 	// TODO add your handling code here:
-    }//GEN-LAST:event_frenchActionPerformed
+    }//GEN-LAST:event_frenchMenuItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField answerChoiceTextField;
     private javax.swing.JButton checkAnswerButton;
     private javax.swing.JPanel controlsJPanel;
-    private javax.swing.JMenuItem english;
-    private javax.swing.JMenu file;
-    private javax.swing.JMenuItem french;
-    private javax.swing.JMenuItem german;
-    private javax.swing.JMenu language;
+    private javax.swing.JMenuItem englishMenuItem;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenuItem frenchMenuItem;
+    private javax.swing.JMenuItem germanMenuItem;
+    private javax.swing.JMenu languageMenu;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton nextQuestionButton;
     private javax.swing.JLabel questionJLabel;

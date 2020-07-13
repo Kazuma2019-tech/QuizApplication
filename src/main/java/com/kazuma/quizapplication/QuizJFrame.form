@@ -4,33 +4,33 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="file">
+        <Menu class="javax.swing.JMenu" name="fileMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="language">
+        <Menu class="javax.swing.JMenu" name="languageMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="language"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="english">
+            <MenuItem class="javax.swing.JMenuItem" name="englishMenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="english"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="englishActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="englishMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="french">
+            <MenuItem class="javax.swing.JMenuItem" name="frenchMenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="french"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="frenchActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="frenchMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="german">
+            <MenuItem class="javax.swing.JMenuItem" name="germanMenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="german"/>
               </Properties>
