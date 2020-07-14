@@ -11,7 +11,6 @@ public class QuizJFrame extends javax.swing.JFrame
     {
 	initComponents();
 	initQuestionOrder();
-	initQuiz();
 	//userGraphicJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Thumbs-up.jpg")));
     }
     private int questionIndex = 0;
@@ -153,19 +152,25 @@ public class QuizJFrame extends javax.swing.JFrame
 			+ "Number of Correct answers = " + correctAnswers + "<br />"
 			+ "Number of Incorrect answers = " + wrongAnswers + "</html>";
 		JOptionPane.showMessageDialog(this, output);
-		initQuiz();
+
 	    }
 	    questionIndex++;
 	    nextQuestionButton.setEnabled(false);
 	}
 	else
 	{
+	    String output = "<html>Thanks for Taking the quiz.<br />"
+		    + "Number of questions answered = " + (questionIndex + 1) + "<br />"
+		    + "Number of Correct answers = " + correctAnswers + "<br />"
+		    + "Number of Incorrect answers = " + wrongAnswers + "</html>";
+	    JOptionPane.showMessageDialog(this, output);
+	    finishQuiz();
 	    JOptionPane.showMessageDialog(this, "All questions answered.");
-	    initQuiz();
+	    finishQuiz();
 	}
     }
 
-    private void initQuiz() throws HeadlessException
+    private void finishQuiz() throws HeadlessException
     {
 	correctAnswers = 0;
 	wrongAnswers = 0;
