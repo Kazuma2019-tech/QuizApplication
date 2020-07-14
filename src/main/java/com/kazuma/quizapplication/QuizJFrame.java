@@ -159,12 +159,7 @@ public class QuizJFrame extends javax.swing.JFrame
 	}
 	else
 	{
-	    String output = "<html>Thanks for Taking the quiz.<br />"
-		    + "Number of questions answered = " + (questionIndex + 1) + "<br />"
-		    + "Number of Correct answers = " + correctAnswers + "<br />"
-		    + "Number of Incorrect answers = " + wrongAnswers + "</html>";
-	    JOptionPane.showMessageDialog(this, output);
-	    finishQuiz();
+
 	    JOptionPane.showMessageDialog(this, "All questions answered.");
 	    finishQuiz();
 	}
