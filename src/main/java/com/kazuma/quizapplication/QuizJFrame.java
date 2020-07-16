@@ -3,14 +3,18 @@ package com.kazuma.quizapplication;
 import java.awt.HeadlessException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 public class QuizJFrame extends javax.swing.JFrame
 {
+
+    Timer t;
 
     public QuizJFrame()
     {
 	initComponents();
 	initQuestionOrder();
+	setLocationRelativeTo(this);
 	//userGraphicJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Thumbs-up.jpg")));
     }
     private int questionIndex = 0;
@@ -210,6 +214,8 @@ public class QuizJFrame extends javax.swing.JFrame
         selectAnswerComboBox = new javax.swing.JComboBox<>();
         answerChoiceTextField = new javax.swing.JTextField();
         userGraphicJLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lblTime = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         languageMenu = new javax.swing.JMenu();
@@ -222,6 +228,7 @@ public class QuizJFrame extends javax.swing.JFrame
 
         controlsJPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Controls", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP));
 
+        startButton.setBackground(new java.awt.Color(51, 255, 51));
         startButton.setText("Start");
         startButton.setToolTipText("click on the start button to start");
         startButton.addActionListener(new java.awt.event.ActionListener()
@@ -232,6 +239,7 @@ public class QuizJFrame extends javax.swing.JFrame
             }
         });
 
+        nextQuestionButton.setBackground(new java.awt.Color(102, 102, 255));
         nextQuestionButton.setText("Next Question");
         nextQuestionButton.setEnabled(false);
         nextQuestionButton.addActionListener(new java.awt.event.ActionListener()
@@ -242,6 +250,7 @@ public class QuizJFrame extends javax.swing.JFrame
             }
         });
 
+        checkAnswerButton.setBackground(new java.awt.Color(255, 255, 51));
         checkAnswerButton.setText("Check Answer");
         checkAnswerButton.setEnabled(false);
         checkAnswerButton.addActionListener(new java.awt.event.ActionListener()
@@ -252,6 +261,7 @@ public class QuizJFrame extends javax.swing.JFrame
             }
         });
 
+        quitButton.setBackground(new java.awt.Color(255, 51, 102));
         quitButton.setText("Quit");
         quitButton.setToolTipText("Click to quit and finish");
         quitButton.addActionListener(new java.awt.event.ActionListener()
@@ -293,7 +303,10 @@ public class QuizJFrame extends javax.swing.JFrame
 
         questionJTextField.setEditable(false);
 
+        selectAnswerComboBox.setBackground(new java.awt.Color(255, 153, 0));
+
         answerChoiceTextField.setEditable(false);
+        answerChoiceTextField.setBackground(new java.awt.Color(204, 204, 255));
 
         javax.swing.GroupLayout questionJPanelLayout = new javax.swing.GroupLayout(questionJPanel);
         questionJPanel.setLayout(questionJPanelLayout);
@@ -325,6 +338,30 @@ public class QuizJFrame extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(answerChoiceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1.setName("Timer"); // NOI18N
+
+        lblTime.setBackground(new java.awt.Color(0, 153, 255));
+        lblTime.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTime.setText(" 00:00:00");
+        lblTime.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTime, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTime, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         fileMenu.setText("File");
@@ -371,8 +408,12 @@ public class QuizJFrame extends javax.swing.JFrame
                         .addComponent(controlsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(userGraphicJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 50, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,7 +422,9 @@ public class QuizJFrame extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(controlsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userGraphicJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(1, 1, 1)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(questionJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -423,7 +466,9 @@ public class QuizJFrame extends javax.swing.JFrame
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuItem frenchMenuItem;
     private javax.swing.JMenuItem germanMenuItem;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu languageMenu;
+    private javax.swing.JLabel lblTime;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton nextQuestionButton;
     private javax.swing.JLabel questionJLabel;
